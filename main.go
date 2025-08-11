@@ -4,11 +4,18 @@ import (
 	"kubernetes-go-app/pkg/api"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
+	// Print environment variables
+	log.Printf("Environment Variables:")
+	log.Printf("APP_ENV: %s", os.Getenv("APP_ENV"))
+	log.Printf("LOG_LEVEL: %s", os.Getenv("LOG_LEVEL"))
+	log.Printf("MAX_ITEMS: %s", os.Getenv("MAX_ITEMS"))
+
 	r := mux.NewRouter()
 
 	// API Routes
@@ -18,7 +25,7 @@ func main() {
 	r.HandleFunc("/api/items/{id}", api.UpdateItem).Methods("PUT")
 	r.HandleFunc("/api/items/{id}", api.DeleteItem).Methods("DELETE")
 
-	// Health Check Routes
+	// Health Check Route
 	r.HandleFunc("/health", api.HealthCheck).Methods("GET")
 
 	log.Printf("Server starting on port 8080")
