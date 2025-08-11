@@ -67,22 +67,9 @@ A simple CRUD API built with Go and deployed on Kubernetes, demonstrating:
 
 ## API Endpoints
 
+- `GET /health` - Health check
 - `GET /api/items` - List all items
 - `GET /api/items/{id}` - Get a specific item
 - `POST /api/items` - Create a new item
 - `PUT /api/items/{id}` - Update an item
 - `DELETE /api/items/{id}` - Delete an item
-
-## Development
-
-The project uses Tilt for development workflow:
-
-```bash
-tilt up
-```
-
-This will automatically:
-- Build the Docker image
-- Deploy to Kubernetes
-- Set up port forwarding
-- Watch for changes
