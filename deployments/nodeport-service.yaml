@@ -8,5 +8,5 @@ spec:
     app: go-crud-api
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 80
       nodePort: 30000

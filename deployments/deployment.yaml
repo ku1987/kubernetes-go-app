@@ -13,6 +13,21 @@ spec:
         app: go-crud-api
     spec:
       containers:
+        - name: nginx
+          image: nginx:1.17.0-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /etc/nginx/
+              name: nginx-config
+              readOnly: true
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
         - name: go-crud-api
           image: go-crud-api:latest
           imagePullPolicy: Never
@@ -34,3 +49,8 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
+
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: confnginx
